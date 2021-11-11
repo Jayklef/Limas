@@ -10,5 +10,5 @@ public interface MembershipCategoryService {
 
     List<MembershipCategory> getAllMembershipCategories();
 
-    MembershipCategory getMembershipCategoryById(Long id) throws MembershipCategoryNotFoundException;
+    MembershipCategory getMembershipCategoryById(Long mcId) throws MembershipCategoryNotFoundException;
 }

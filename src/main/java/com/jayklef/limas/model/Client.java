@@ -24,4 +24,13 @@ public class Client {
 
     @Lob
     private byte[] clientPassport;
+
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "mc_Id",
+            referencedColumnName = "mcId"
+    )
+    private MembershipCategory membershipCategory;
 }

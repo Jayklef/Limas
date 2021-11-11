@@ -38,7 +38,7 @@ public class MembershipCategoryController{
     }
 
     @GetMapping("membershipcategories/{id}")
-    public MembershipCategory getMembershipCategoryById(@PathVariable("id") Long id) throws MembershipCategoryNotFoundException {
-        return membershipCategoryService.getMembershipCategoryById(id);
+    public MembershipCategory getMembershipCategoryById(@PathVariable("mcId") Long mcId) throws MembershipCategoryNotFoundException {
+        return membershipCategoryService.getMembershipCategoryById(mcId);
     }
 }

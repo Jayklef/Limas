@@ -17,6 +17,6 @@ public class MembershipCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String name;
+    private Long mcId;
+    private String mcName;
 }

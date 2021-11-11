@@ -30,8 +30,8 @@ public class MembershipCategoryServiceImpl implements MembershipCategoryService{
     }
 
     @Override
-    public MembershipCategory getMembershipCategoryById(Long id) throws MembershipCategoryNotFoundException {
-        Optional<MembershipCategory> membershipCategory = membershipCategoryRepository.findById(id);
+    public MembershipCategory getMembershipCategoryById(Long mcId) throws MembershipCategoryNotFoundException {
+        Optional<MembershipCategory> membershipCategory = membershipCategoryRepository.findById(mcId);
 
         if (!membershipCategory.isPresent()){
             throw new MembershipCategoryNotFoundException();
