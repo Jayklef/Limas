@@ -3,6 +3,8 @@ package com.jayklef.limas.controller;
 import com.jayklef.limas.exception.MembershipCategoryNotFoundException;
 import com.jayklef.limas.model.MembershipCategory;
 import com.jayklef.limas.service.MembershipCategoryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,8 @@ public class MembershipCategoryController{
 
     private MembershipCategoryService membershipCategoryService;
 
+    private Logger logger = LoggerFactory.getLogger(MembershipCategory.class);
+
     @Autowired
     public MembershipCategoryController(MembershipCategoryService membershipCategoryService) {
         this.membershipCategoryService = membershipCategoryService;
@@ -23,11 +27,13 @@ public class MembershipCategoryController{
 
     @PostMapping("/membershipcategories")
     public MembershipCategory saveMembershipCategory(MembershipCategory membershipCategory){
+        logger.info("Inside SaveMembershipCategory of MembershipController");
         return membershipCategoryService.saveMembershipCategory(membershipCategory);
     }
 
     @GetMapping("/membershipcategories")
     public List<MembershipCategory> getAllMembershipCategories(){
+        logger.info("Inside getAllmembershipCategories of MembershipController");
         return membershipCategoryService.getAllMembershipCategories();
     }
 
