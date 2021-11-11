@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 public class ClientController {
@@ -22,7 +23,7 @@ public class ClientController {
     }
 
     @PostMapping("/clients")
-    public Client saveClient(Client client){
+    public Client saveClient(@Valid @RequestBody Client client){
         logger.info("Inside saveClient of ClientController");
         return clientService.saveClient(client);
     }
