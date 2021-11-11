@@ -34,7 +34,7 @@ public class MembershipCategoryServiceImpl implements MembershipCategoryService{
         Optional<MembershipCategory> membershipCategory = membershipCategoryRepository.findById(mcId);
 
         if (!membershipCategory.isPresent()){
-            throw new MembershipCategoryNotFoundException();
+            throw new MembershipCategoryNotFoundException("Membership Category Not Found");
         }
         return membershipCategory.get();
     }

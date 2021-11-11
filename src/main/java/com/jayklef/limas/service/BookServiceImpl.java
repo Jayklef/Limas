@@ -34,7 +34,7 @@ public class BookServiceImpl implements BookService{
         Optional<Book> book = bookRepository.findById(bookId);
 
         if (!book.isPresent()){
-            throw new BookNotFoundException();
+            throw new BookNotFoundException("Book Not Found");
         }
         return book.get();
     }
@@ -44,7 +44,7 @@ public class BookServiceImpl implements BookService{
         Optional<Book> book = Optional.ofNullable(bookRepository.findBookByTitle(title));
 
         if (!book.isPresent()){
-            throw new BookNotFoundException();
+            throw new BookNotFoundException("Book Not Found");
         }
         return book.get();
     }
@@ -54,7 +54,7 @@ public class BookServiceImpl implements BookService{
         Optional<Book> book = Optional.ofNullable(bookRepository.findBookByAuthor(author));
 
         if (!book.isPresent()){
-            throw new BookNotFoundException();
+            throw new BookNotFoundException("Book Not Found");
         }
         return book.get();
     }

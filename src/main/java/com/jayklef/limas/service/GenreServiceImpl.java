@@ -34,7 +34,7 @@ public class GenreServiceImpl implements GenreService{
         Optional<Genre> genre = genreRepository.findById(genreId);
 
         if (!genre.isPresent()){
-            throw new GenreNotFoundException();
+            throw new GenreNotFoundException("Genre Not Found");
         }
         return genre.get();
     }

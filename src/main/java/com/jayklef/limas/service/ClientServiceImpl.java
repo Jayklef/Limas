@@ -46,7 +46,7 @@ public class ClientServiceImpl implements ClientService{
         if (client.isPresent()){
             return client.get();
         }
-        throw new ClientNotFoundException();
+        throw new ClientNotFoundException("Client Not Found");
     }
 
     @Override
@@ -56,7 +56,7 @@ public class ClientServiceImpl implements ClientService{
         if (client.isPresent()){
             return client.get();
         }
-        throw new ClientNotFoundException();
+        throw new ClientNotFoundException("Client Not Found");
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ClientServiceImpl implements ClientService{
         Optional<Client> client = Optional.ofNullable(clientRepository.findClientByPhoneNumber(phoneNumber));
 
         if (!client.isPresent()){
-            throw new ClientNotFoundException();
+            throw new ClientNotFoundException("Client Not Found");
         }
         return client.get();
     }
