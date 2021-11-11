@@ -40,12 +40,42 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
+    public Client getClientByFirstName(String firstName) throws ClientNotFoundException {
+        Optional<Client> client = Optional.ofNullable(clientRepository.findClientByFirstName(firstName));
+
+        if (client.isPresent()){
+            return client.get();
+        }
+        throw new ClientNotFoundException();
+    }
+
+    @Override
+    public Client getClientBylastName(String lastName) throws ClientNotFoundException {
+        Optional<Client> client = Optional.ofNullable(clientRepository.findClientByLastName(lastName));
+
+        if (client.isPresent()){
+            return client.get();
+        }
+        throw new ClientNotFoundException();
+    }
+
+    @Override
+    public Client getClientByPhoneNumber(String phoneNumber) throws ClientNotFoundException {
+        Optional<Client> client = Optional.ofNullable(clientRepository.findClientByPhoneNumber(phoneNumber));
+
+        if (!client.isPresent()){
+            throw new ClientNotFoundException();
+        }
+        return client.get();
+    }
+
+    @Override
     public Client updateClient(Long clientId, Client client) {
         return null;
     }
 
     @Override
     public void deleteClient() {
-
     }
+
 }

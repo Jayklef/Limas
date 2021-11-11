@@ -15,4 +15,10 @@ public interface ClientService {
     Client updateClient(Long clientId, Client client);
 
     void deleteClient();
+
+    Client getClientByFirstName(String firstName) throws ClientNotFoundException;
+
+    Client getClientBylastName(String lastName) throws ClientNotFoundException;
+
+    Client getClientByPhoneNumber(String phoneNumber) throws ClientNotFoundException;
 }

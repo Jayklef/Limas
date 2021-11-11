@@ -38,6 +38,21 @@ public class ClientController {
         return clientService.getClientById(clientId);
     }
 
+    @GetMapping("/clients/{firstName}")
+    public Client getClientByFirstName(@PathVariable("firstName") String firstName) throws ClientNotFoundException {
+        return clientService.getClientByFirstName(firstName);
+    }
+
+    @GetMapping("/clients/{lastName}")
+    public Client getClientBylastName(@PathVariable("lastName") String lastName) throws ClientNotFoundException {
+        return clientService.getClientBylastName(lastName);
+    }
+
+    @GetMapping("/clients/{phonenumber}")
+    public Client getClientByPhoneNumber(@PathVariable("phonenumber") String phoneNumber) throws ClientNotFoundException {
+        return clientService.getClientByPhoneNumber(phoneNumber);
+    }
+
     @PutMapping("/clients/{id}")
     public Client updateClient(@PathVariable("clientId") Long clientId, Client client){
         return clientService.updateClient(clientId, client);
