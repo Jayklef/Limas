@@ -40,6 +40,26 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
+    public Book getBookByTitle(String title) throws BookNotFoundException {
+        Optional<Book> book = Optional.ofNullable(bookRepository.findBookByTitle(title));
+
+        if (!book.isPresent()){
+            throw new BookNotFoundException();
+        }
+        return book.get();
+    }
+
+    @Override
+    public Book getBookByAuthor(String author) throws BookNotFoundException {
+        Optional<Book> book = Optional.ofNullable(bookRepository.findBookByAuthor(author));
+
+        if (!book.isPresent()){
+            throw new BookNotFoundException();
+        }
+        return book.get();
+    }
+
+    @Override
     public Book updateBook(Long bookId, Book book) {
         Book bookInDb = bookRepository.findById(bookId).get();
 
@@ -55,5 +75,4 @@ public class BookServiceImpl implements BookService{
     @Override
     public void deleteBook() {
     }
-
 }

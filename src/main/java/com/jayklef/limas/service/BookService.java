@@ -12,7 +12,12 @@ public interface BookService {
 
     Book getBookById(Long bookId) throws BookNotFoundException;
 
+    Book getBookByTitle(String title) throws BookNotFoundException;
+
+    Book getBookByAuthor(String author) throws BookNotFoundException;
+
     Book updateBook(Long bookId, Book book);
 
     void deleteBook();
+
 }

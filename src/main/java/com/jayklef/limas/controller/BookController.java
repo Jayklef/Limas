@@ -38,6 +38,16 @@ public class BookController {
         return bookService.getBookById(bookId);
     }
 
+    @GetMapping("/books/{title}")
+    public Book getBookByTitle(@PathVariable("title") String title) throws BookNotFoundException {
+        return bookService.getBookByTitle(title);
+    }
+
+    @GetMapping("/books/{author}")
+    public Book getBookByAuthor(@PathVariable("author") String author) throws BookNotFoundException {
+        return bookService.getBookByAuthor(author);
+    }
+
     @PutMapping("/books/{id}")
     public Book updateBook(@PathVariable("bookId") Long bookId, Book book){
         return bookService.updateBook(bookId, book);
