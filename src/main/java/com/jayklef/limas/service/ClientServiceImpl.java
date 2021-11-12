@@ -2,7 +2,9 @@ package com.jayklef.limas.service;
 
 import com.jayklef.limas.exception.ClientNotFoundException;
 import com.jayklef.limas.model.Client;
+import com.jayklef.limas.model.MembershipCategory;
 import com.jayklef.limas.repository.ClientRepository;
+import com.jayklef.limas.repository.MembershipCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class ClientServiceImpl implements ClientService{
 
     private ClientRepository clientRepository;
+    private MembershipCategoryRepository membershipCategoryRepository;
 
     @Autowired
     public ClientServiceImpl(ClientRepository clientRepository) {
@@ -27,6 +30,12 @@ public class ClientServiceImpl implements ClientService{
     @Override
     public List<Client> getAllClients() {
         return clientRepository.findAll();
+    }
+
+    @Override
+    public List<Client> getAllClientsByMembershipCategory(String mcName) {
+        MembershipCategory membershipCategory = this.membershipCategoryRepository.findAll().listIterator().next();
+        return clientRepository.findAllByMembershipCategory(mcName);
     }
 
     @Override

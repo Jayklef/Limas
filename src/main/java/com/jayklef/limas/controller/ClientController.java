@@ -2,6 +2,7 @@ package com.jayklef.limas.controller;
 
 import com.jayklef.limas.exception.ClientNotFoundException;
 import com.jayklef.limas.model.Client;
+import com.jayklef.limas.model.MembershipCategory;
 import com.jayklef.limas.service.ClientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,11 @@ public class ClientController {
     public List<Client> getAllClients(){
         logger.info("Inside getAllClients of ClientController");
         return clientService.getAllClients();
+    }
+
+    @GetMapping("/clients/membershipcategories/{mcname}")
+    public List<Client> getAllClientsByMembershipCategory(@PathVariable("mcName") String mcName){
+        return clientService.getAllClientsByMembershipCategory(mcName);
     }
 
     @GetMapping("/clients/{id}")

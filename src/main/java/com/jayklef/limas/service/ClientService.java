@@ -10,6 +10,8 @@ public interface ClientService {
 
     List<Client> getAllClients();
 
+    List<Client> getAllClientsByMembershipCategory(String mcName);
+
     Client getClientById(Long clientId) throws ClientNotFoundException;
 
     Client updateClient(Long clientId, Client client);
