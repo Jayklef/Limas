@@ -3,9 +3,11 @@ package com.jayklef.limas.controller;
 import com.jayklef.limas.exception.BookNotFoundException;
 import com.jayklef.limas.model.Book;
 import com.jayklef.limas.service.BookService;
+import com.jayklef.limas.service.GenreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,11 +16,13 @@ import java.util.List;
 public class BookController {
 
     private BookService bookService;
+    private GenreService genreService;
     private Logger logger = LoggerFactory.getLogger(BookController.class);
 
     @Autowired
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, GenreService genreService) {
         this.bookService = bookService;
+        this.genreService = genreService;
     }
 
     @PostMapping("/books")
@@ -31,6 +35,11 @@ public class BookController {
     public List<Book> getAllBooks(){
         logger.info("Inside getAllBooks of BookController");
        return bookService.getAllBooks();
+    }
+
+    @GetMapping("/books/genres/{genreName}")
+    public List<Book> getListOfBooksByGenreName(@PathVariable("genreName") String genreName){
+        return bookService.getListOfBooksByGenreName(genreName);
     }
 
     @GetMapping("/books/{id}")

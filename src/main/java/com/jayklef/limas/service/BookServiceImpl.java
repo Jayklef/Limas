@@ -1,11 +1,16 @@
 package com.jayklef.limas.service;
 
 import com.jayklef.limas.exception.BookNotFoundException;
+import com.jayklef.limas.exception.GenreNotFoundException;
 import com.jayklef.limas.model.Book;
+import com.jayklef.limas.model.Genre;
 import com.jayklef.limas.repository.BookRepository;
+import com.jayklef.limas.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,10 +18,12 @@ import java.util.Optional;
 public class BookServiceImpl implements BookService{
 
     private BookRepository bookRepository;
+    private GenreRepository genreRepository;
 
     @Autowired
-    public BookServiceImpl(BookRepository bookRepository) {
+    public BookServiceImpl(BookRepository bookRepository, GenreRepository genreRepository) {
         this.bookRepository = bookRepository;
+        this.genreRepository = genreRepository;
     }
 
     @Override
@@ -27,6 +34,12 @@ public class BookServiceImpl implements BookService{
     @Override
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
+    }
+
+    @Override
+    public List<Book> getListOfBooksByGenreName(String genreName) {
+        Genre genre = this.genreRepository.findAll().listIterator().next();
+        return bookRepository.findAllByGenreName(genre);
     }
 
     @Override
